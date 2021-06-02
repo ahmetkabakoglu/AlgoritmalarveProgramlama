@@ -1,3 +1,48 @@
+class Costumer:
+    def __init__(self, isim: str, soyisim: str, yas: int, il: str, ilce: str, adres: str, idno: str, parola: str):
+        self.isim = isim
+        self.soyisim = soyisim
+        self.yas = yas
+        self.parola = parola
+        self.idno = idno
+        self.il = il
+        self.ilce = ilce
+        self.adres = adres
+
+    def getIsim(self):
+        return self.isim
+
+    def getsoyIsim(self):
+        return self.soyisim
+
+    def getIdNo(self):
+        return self.idno
+
+    def getParola(self):
+        return self.parola
+
+    def getYas(self):
+        return self.yas
+
+
+class Store:
+    def __init__(self, isim: str):
+        self.__isim = isim
+        self.__musteriler = list()
+
+    def musteriVarMi(self, idno: str, parola: str):
+        for i in self.__musteriler:
+            if i.getIdNo() == idno and i.getParola() == parola:
+                return i
+        return False
+    def musteriOl(self, isim: str, soyisim: str, yas: int, il: str, ilce: str, adres: str, idno: str, parola: str):
+        self.__musteriler.append(Costumer(isim, soyisim, yas, il, ilce, adres, idno, parola))
+
+
+
+shop = []
+
+
 class Product:
     def __init__(self, marka, model, fiyat, numara):
         self.marka = marka
@@ -6,15 +51,7 @@ class Product:
         self.numara = numara
 
     def sepet(self):
-        print(f"{self.marka} {self.model} ----------- {self.fiyat}₺")
-
-
-class Costumer:
-    def __init__(self, isim, soyisim, musterino, adres):
-        self.isim = isim
-        self.soyisim = soyisim
-        self.musterino = musterino
-        self.adres = adres
+        shop.append(f"{self.marka} {self.model} ----------- {self.fiyat}₺")
 
 
 class Processor(Product):
@@ -25,6 +62,7 @@ class Processor(Product):
 
     def yazdir(self):
         print(f"[{self.numara}] {self.marka} {self.seri} {self.model} {self.guc}GHz {self.fiyat}₺")
+        return self.fiyat
 
 
 class Motherboard(Product):
@@ -127,3 +165,33 @@ class Mouse(Product):
 
     def yazdir(self):
         print(f"[{self.numara}] {self.marka} {self.model} {self.ozellik} Gaming Mouse {self.fiyat}₺")
+        return self.fiyat
+
+    def yaz(self):
+        print(f"[{self.numara}] {self.marka} {self.model} {self.ozellik} Gaming Mouse {self.fiyat}₺")
+
+note = []
+class Notebook:
+    def __init__(self, marka, seri, model, islemci, ekrankarti, boy, cozunurluk, tazeleme, bellek, depolama, isletim,
+                 fiyat, numara):
+        self.marka = marka
+        self.seri = seri
+        self.model = model
+        self.islemci = islemci
+        self.ekrankarti = ekrankarti
+        self.boy = boy
+        self.cozunurluk = cozunurluk
+        self.tazeleme = tazeleme
+        self.bellek = bellek
+        self.depolama = depolama
+        self.isletim = isletim
+        self.numara = numara
+        self.fiyat = fiyat
+
+    def yazdir(self):
+        print(f"[{self.numara}] {self.marka} {self.seri} {self.model} {self.islemci} {self.ekrankarti}\n"
+              f"    {self.boy} {self.cozunurluk} {self.tazeleme} {self.bellek} {self.depolama} {self.isletim} {self.fiyat}₺")
+    def hediyeEt(self):
+        print(f'''    {self.boy}" Notebok Çantası (Ücretsiz)''')
+    def sepet(self):
+        note.append(f"{self.marka} {self.model} ----------- {self.fiyat}₺")
